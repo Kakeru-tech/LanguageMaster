@@ -1,0 +1,82 @@
+
+
+.flashcard_title {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: 95%;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background-color: #263043;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+
+
+.flashcard {
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-top: 100px;
+    height: 40%;
+    width: 40%;
+    color: rgba(0, 0, 0, 0.95);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flashcardGray{
+    border-radius: 5px;
+    background-color: #cecbcb;
+    margin-top: 100px;
+    height: 40%;
+    width: 40%;
+    color: rgba(0, 0, 0, 0.95);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flashcard-content {
+    font-size: xx-large;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+.no_area {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fcb5b5;
+}
+
+.yes_area {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #95b4f3;
+}
+
+.yesNo_Text {
+    margin: 5px;
+}
+
+.countStr {
+    font-size: medium;
+}
+
+.example{
+    color:red;
+    font-size: large;
+}
