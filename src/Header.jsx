@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify } from 'react-icons/bs';
+import { BsPersonCircle, BsSearch, BsJustify } from 'react-icons/bs';
 import AuthModal from './AuthModal/AuthModal';
 
 const Header = ({ OpenSidebar, userValified, setUserValified }) => {
