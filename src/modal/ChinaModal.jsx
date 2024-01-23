@@ -63,6 +63,7 @@ export const ChinaModal = ({ setModalOpen, onAddNew, editOn, onEdit }) => {
                         <option value='Verb'>Verb</option>
                         <option value='Adjective'>Adjective</option>
                         <option value='Adverb'>Adverb</option>
+                        <option value='Idiom'>Idiom</option>
                         <option value='Others'>Others</option>
                     </select>
                 </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Modal.css'
 
-export const EngModal = ({ setModalOpen, onAddNew, editOn,onEdit }) => {
+export const EngModal = ({ setModalOpen, onAddNew, editOn, onEdit }) => {
 
     const [english, setEnglish] = useState(editOn ? editOn.english : '');
     const [meaning, setMeaning] = useState(editOn ? editOn.meaning : '');
@@ -55,6 +55,7 @@ export const EngModal = ({ setModalOpen, onAddNew, editOn,onEdit }) => {
                         <option value='Verb'>Verb</option>
                         <option value='Adjective'>Adjective</option>
                         <option value='Adverb'>Adverb</option>
+                        <option value='Idiom'>Idiom</option>
                         <option value='Others'>Others</option>
                     </select>
                 </div>
