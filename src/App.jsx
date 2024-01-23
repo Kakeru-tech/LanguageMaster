@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import Header from './Header'
-import Sidebar from './Sidebar';
-import Home from './Home';
+import Header from './Header/Header'
+import Sidebar from './Sidebar/Sidebar';
+import Home from './Home/Home';
 
 import EngListPage from './listPage/EngListPage';
 import EngFlashcard from './flashCard/EngFlashcard';
 import ChinaListPage from './listPage/ChinaListPage';
 import ChinaFlashcard from './flashCard/ChinaFlashcard';
-// import { Font } from 'react-pdf';
 
 import { db } from './firebaseConfig';
 import {
@@ -130,9 +129,10 @@ function App() {
 
 
   return (
-    <div className='grid-container'>
+    <div className={!openSidebarToggle ? 'grid-container' : 'grid-container-hide'}>
       <Header
         OpenSidebar={OpenSidebar}
+        openSidebarToggle={openSidebarToggle}
         userValified={userValified}
         setUserValified={setUserValified}
       />
@@ -151,6 +151,7 @@ function App() {
         />}
       {currentPage == 'engQuiz' &&
         <EngFlashcard
+          openSidebarToggle={openSidebarToggle}
           engNote={engNote}
           yesNoUpdate={yesNoUpdate}
           userValified={userValified}

@@ -24,7 +24,7 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
             {
               engNote.map((row, key) => {
                 return (
-                  <tr key={key}>
+                  <tr key={key} className={row.status === 'notLearnt' ? '' : 'learntRow'}>
                     <td><h4>{row.english}</h4></td>
                     <td>{row.meaning}</td>
                     <td>{row.type}</td>

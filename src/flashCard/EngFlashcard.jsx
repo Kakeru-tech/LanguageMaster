@@ -3,13 +3,14 @@ import './Flashcard.css';
 import '../App.css'
 
 
-const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
+const EngFlashcard = ({ engNote, yesNoUpdate, userValified, openSidebarToggle }) => {
 
     const [count, setCount] = useState(0);
     const [flipped, setFlipped] = useState(false);
     const [hitLimit, setHitLimit] = useState(false);
+    const [arr, setArr] = useState([]);
 
-
+    
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
         //remove event listener when component is mounted.
@@ -17,6 +18,10 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
             window.removeEventListener('keydown', handleKeyPress);
         };
     }, [engNote, count, flipped, hitLimit]);
+
+    useEffect(() => {
+        setArr(sortedArray());
+    }, []);
 
 
     const handleKeyPress = async (e) => {
@@ -29,10 +34,11 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
                 break;
             case 'ArrowRight':
                 if (!hitLimit) {
+                    nextCardFlipFalse();
                     if (userValified) {
-                        await yesNoUpdate(sortedArray()[count], true, 'English');
+                        await yesNoUpdate(arr[count], true, 'English');//
                     }
-                    if (sortedArray().length > count + 1) {
+                    if (arr.length > count + 1) {
                         handleIncrement();
                     } else {
                         handlelimit();
@@ -41,10 +47,11 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
                 break;
             case 'ArrowLeft':
                 if (!hitLimit) {
+                    nextCardFlipFalse();
                     if (userValified) {
-                        await yesNoUpdate(sortedArray()[count], false, 'English');
+                        await yesNoUpdate(arr[count], false, 'English');//
                     }
-                    if (sortedArray().length > count + 1) {
+                    if (arr.length > count + 1) {
                         handleIncrement();
                     } else {
                         handlelimit();
@@ -67,7 +74,6 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
             const j = Math.floor(Math.random() * (i + 1));
             [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
         }
-
         return newArray;
     }
 
@@ -76,14 +82,18 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
     };
 
     const handleToggleFlip = () => {
-        setFlipped((prevFlipped) => !prevFlipped);
+        setFlipped(!flipped);
+    }
+    //
+    const nextCardFlipFalse = () => {
+        setFlipped(false);
     }
 
     const handlelimit = () => {
         setHitLimit((prevhitLimit) => !prevhitLimit);
     }
 
-    const flashcardContent = sortedArray()[count];
+    const flashcardContent = arr[count];
 
     const restart = () => {
         setCount(0);
@@ -100,11 +110,12 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified }) => {
                 <div className='flashcard-inner'>
                     <h3>English Quiz</h3>
                 </div>
-                <h1>{count + 1}/{sortedArray().length}</h1>
+                <h1>{count + 1}/{arr.length}</h1>
             </div>
 
 
-            <div className={(count % 2 == 0) ? 'flashcard' : 'flashcardGray'}>
+            {/* <div className='flashcard'> */}
+                <div className={(count % 2 == 0) ? 'flashcard' : 'flashcardGray'}>
 
                 <div className='no_area'><div className='yesNo_Text'>NO</div></div>
                 {hitLimit

@@ -1,8 +1,7 @@
 import React from 'react'
-import {
-    BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsBellFill
-}
-    from 'react-icons/bs';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsBellFill } from 'react-icons/bs';
+import './Home.css'
+
 
 function Home({ engNote, chinaNote }) {
 

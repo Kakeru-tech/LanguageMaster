@@ -31,7 +31,7 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
                         {
                             chinaNote.map((row, key) => {
                                 return (
-                                    <tr key={key} onClick={() => console.table(row)}>
+                                    <tr key={key} className={row.status === 'notLearnt' ? '' : 'learntRow'}>
                                         <td><h3>{row.chinese}</h3></td>
                                         <td>{row.pinyin}</td>
                                         <td>{row.meaning}</td>

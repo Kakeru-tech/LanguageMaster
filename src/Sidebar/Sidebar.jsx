@@ -3,13 +3,14 @@ import {
     BsGrid1X2Fill, BsListCheck, BsMenuButtonWideFill
 } from 'react-icons/bs'
 import { FaWindowClose } from "react-icons/fa";
+import './Sidebar.css'
 
 
 
 
 function Sidebar({ openSidebarToggle, OpenSidebar, pageChanger }) {
     return (
-        <aside id='sidebar' className={openSidebarToggle ? 'sidebar-responsive' : ''}>
+        <aside id='sidebar' className={!openSidebarToggle ? 'sidebar-responsive' : 'sidebar-responsive-hide'}>
             <div className='sidebar-title'>
                 <div className='sidebar-brand'>
                     {/* <BsCart3 className='icon_header' />SHOP */}
@@ -19,8 +20,6 @@ function Sidebar({ openSidebarToggle, OpenSidebar, pageChanger }) {
                 {/* <span className='icon close_icon' onClick={OpenSidebar}>X</span> */}
                 <FaWindowClose className='icon close_icon' onClick={OpenSidebar} />
             </div>
-
-
 
 
             <ul className='sidebar-list'>
@@ -40,9 +39,6 @@ function Sidebar({ openSidebarToggle, OpenSidebar, pageChanger }) {
                 <li className='sidebar-list-item' onClick={() => pageChanger('chinaQuiz')}>
                     <BsListCheck className='icon' /> 中文 Quiz
                 </li>
-
-
-
 
             </ul>
         </aside>

@@ -8,6 +8,7 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
     const [count, setCount] = useState(0);
     const [flipped, setFlipped] = useState(false);
     const [hitLimit, setHitLimit] = useState(false);
+    const [arr, setArr] = useState([]);
 
 
 
@@ -18,6 +19,10 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
             window.removeEventListener('keydown', handleKeyPress);
         };
     }, [chinaNote, count, flipped, hitLimit]);
+
+    useEffect(() => {
+        setArr(sortedArray());
+    }, []);
 
 
     const handleKeyPress = async (e) => {
@@ -30,10 +35,11 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
                 break;
             case 'ArrowRight':
                 if (!hitLimit) {
+                    nextCardFlipFalse();
                     if (userValified) {
-                        await yesNoUpdate(sortedArray()[count], true, 'Chinese');
+                        await yesNoUpdate(arr[count], true, 'Chinese');
                     }
-                    if (sortedArray().length > count + 1) {
+                    if (arr.length > count + 1) {
                         handleIncrement();
                     } else {
                         handlelimit();
@@ -42,10 +48,11 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
                 break;
             case 'ArrowLeft':
                 if (!hitLimit) {
+                nextCardFlipFalse();
                     if (userValified) {
-                        await yesNoUpdate(sortedArray()[count], false, 'Chinese');
+                        await yesNoUpdate(arr[count], false, 'Chinese');
                     }
-                    if (sortedArray().length > count + 1) {
+                    if (arr.length > count + 1) {
                         handleIncrement();
                     } else {
                         handlelimit();
@@ -84,7 +91,7 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
         setHitLimit((prevhitLimit) => !prevhitLimit);
     }
 
-    const flashcardContent = sortedArray()[count];
+    const flashcardContent = arr[count];
 
     const restart = () => {
         setCount(0);
@@ -103,7 +110,7 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
                 <div className='flashcard-inner'>
                     <h3>Chinese Quiz</h3>
                 </div>
-                <h1>{count + 1}/{sortedArray().length}</h1>
+                <h1>{count + 1}/{arr.length}</h1>
             </div>
 
 

@@ -1,0 +1,30 @@
+
+
+.icon {
+  margin-right: 5px;
+}
+
+.icon {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 20px;
+}
+
+.icon_valified {
+  color: #7d9fb7;
+}
+
+.notLoginStr {
+  margin-top: 3px;
+  font-size: small;
+}
+
+.notLoginContainer {
+  display: flex;
+}
+
+@media screen and (max-width: 992px) {
+  .notLoginStr {
+    display: none;
+  }
+}
