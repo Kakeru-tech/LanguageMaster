@@ -3,6 +3,11 @@ import { BsPencilFill, BsFillTrashFill } from 'react-icons/bs'
 import './Table.css'
 
 export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
+
+  const hasHttpOrHttps = (inputString) => {
+    return /^(https?:\/\/)/.test(inputString);
+  }
+
   return (
     <div className='table-container'>
       <div className='table-wrapper'>
@@ -31,7 +36,12 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
                     <td className='expand'>{row.example}</td>
                     <td className='expand'>{row.yes}</td>
                     <td className='expand'>{row.no}</td>
-                    <td>{row.note}</td>
+
+                    {hasHttpOrHttps(row.note)
+                      ? <td><a href={row.note}>Link</a></td>
+                      : <td>{row.note}</td>
+                    }
+
                     <td>
                       <span className={`${row.status === 'notLearnt' ? 'label label-live' : 'label label-draft'}`}>
                         {row.status === 'notLearnt' ? '未修得' : '習得済み'}
