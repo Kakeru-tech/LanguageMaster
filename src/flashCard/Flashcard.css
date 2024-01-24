@@ -1,8 +1,6 @@
 .flashcard_title {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-
     width: 95%;
     padding: 8px 15px;
     border-radius: 5px;
@@ -21,6 +19,7 @@
     width: 30rem;
     color: rgba(0, 0, 0, 0.95);
 }
+
 .flashcardGray {
     display: flex;
     justify-content: space-between;

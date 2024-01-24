@@ -34,8 +34,8 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
                     <td>{row.meaning}</td>
                     <td>{row.type}</td>
                     <td className='expand'>{row.example}</td>
-                    <td className='expand'>{row.yes}</td>
-                    <td className='expand'>{row.no}</td>
+                    <td >{row.yes}</td>
+                    <td >{row.no}</td>
 
                     {hasHttpOrHttps(row.note)
                       ? <td><a href={row.note}>Link</a></td>

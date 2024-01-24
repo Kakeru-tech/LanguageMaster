@@ -26,7 +26,7 @@
     box-shadow: 0px 10px 10px #ccc;
     border-radius: 10px;
     white-space: nowrap;
-    max-width: 90%;
+    max-width: 80%;
     margin: auto;
     overflow-x: auto;
     background-color: #ffffff;
@@ -58,8 +58,9 @@
     background-color: #e7f2ab;
 }
 
-.expand {
-    width: 100%;
+
+.expand1 {
+    max-width: 100%;
 }
 
 .label {
