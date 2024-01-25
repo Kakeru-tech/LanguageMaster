@@ -36,10 +36,11 @@
     margin-right: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
+
     .flashcardGray,
     .flashcard {
-        width: 95%;
+        width: 90%;
     }
 }
 
