@@ -15,6 +15,22 @@
     justify-content: space-evenly;
 }
 
+@media screen and (max-width: 576px) {
+    .option_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sort_container {
+        margin-top: 10px;
+    }
+    .listPage_btn {
+        margin-top: 10px;
+    }
+}
+
 .sort_container {
     display: flex;
 }
@@ -28,6 +44,7 @@
 .sortDropdownBox {
     height: 40px;
 }
-.searchBox{
+
+.searchBox {
     border-radius: 10px;
 }

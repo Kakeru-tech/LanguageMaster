@@ -10,6 +10,14 @@
     gap: 20px;
     margin: 15px 0;
   }
+  /* Small <= 768px */
+
+@media screen and (max-width: 768px) {
+  .main-cards{
+    display:flex;
+    flex-direction: column;
+  }
+}
   
   .card {
     display: flex;

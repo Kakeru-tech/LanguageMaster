@@ -15,6 +15,7 @@ body {
     'sidebar main main main';
   height: 100vh;
 }
+
 .grid-container-hide {
   grid-template-columns: 1fr;
   grid-template-rows: 0.2fr 3fr;
@@ -29,17 +30,17 @@ body {
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content:end;
+  justify-content: end;
   padding: 0 30px 0 30px;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
 }
 
-.header-hide{
+.header-hide {
   grid-area: header;
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   padding: 0 30px 0 30px;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
 }
@@ -78,7 +79,7 @@ body {
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
-  justify-content:start;
+  justify-content: start;
   align-items: center;
 }
 

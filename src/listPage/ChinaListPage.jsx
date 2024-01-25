@@ -128,7 +128,7 @@ const ChinaListPage = ({ chinaNote, userValified }) => {
             <div className='option_container'>
 
                 <div className='sort_container'>
-                    <div className='sortStr'>Sort by:</div>
+                    <div className='sortStr'>排序:</div>
                     <select className='sortDropdownBox' value={sortType} onChange={(e) => setSortType(e.target.value)}>
                         <option value='RecentlyAdded'>Date</option>
                         <option value='Alphabetically'>Alphabetically</option>
@@ -138,7 +138,7 @@ const ChinaListPage = ({ chinaNote, userValified }) => {
                 </div>
 
                 <div className='sort_container'>
-                    <div className='sortStr'>Search :</div>
+                    <div className='sortStr'>搜索 :</div>
                     <input className='searchBox' onChange={(e) => onSearch(e.target.value)} />
                 </div>
 

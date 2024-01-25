@@ -17,7 +17,7 @@ import {
 
 function App() {
 
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(true);
   const [engNote, setEngNote] = useState([]);
   const [chinaNote, setChinaNote] = useState([]);
 
@@ -143,7 +143,12 @@ function App() {
         pageChanger={pageChanger}
       />
 
-      {currentPage == '' && <Home engNote={engNote} chinaNote={chinaNote} />}
+      {currentPage == '' &&
+        <Home
+          engNote={engNote}
+          chinaNote={chinaNote}
+          pageChanger={pageChanger}
+        />}
       {currentPage == 'engList' &&
         <EngListPage
           engNote={engNote}

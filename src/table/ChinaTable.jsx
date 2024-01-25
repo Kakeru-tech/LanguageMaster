@@ -15,16 +15,18 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
                 <table className='table'>
                     <thead>
                         <tr>
-                            <th>Chinese</th>
-                            <th>Pinyin</th>
-                            <th>Meaning</th>
-                            <th>type</th>
-                            <th className='expand'>Example</th>
-                            <th>Y</th>
-                            <th>N</th>
-                            <th>Note</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            {userValified && <th>编辑</th>}
+                            <th>中文</th>
+                            <th>拼音</th>
+                            <th>意思</th>
+                            <th>状态</th>
+
+                            {/* <th>type</th> */}
+                            <th className='expand1'>用法</th>
+                            {userValified && <th>Y</th>}
+                            {userValified && <th>N</th>}
+                            <th>笔记</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -32,32 +34,34 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
                             chinaNote.map((row, key) => {
                                 return (
                                     <tr key={key} className={row.status === 'notLearnt' ? '' : 'learntRow'}>
+                                        {userValified &&
+                                            <td>
+                                                <span className='actions'>
+                                                    <BsFillTrashFill className='delete-btn' onClick={() => onDelete(row.docId)} />
+                                                    <BsPencilFill onClick={() => onEditStart(row)} />
+                                                </span>
+                                            </td>}
+
                                         <td><h3>{row.chinese}</h3></td>
                                         <td>{row.pinyin}</td>
                                         <td>{row.meaning}</td>
-                                        <td>{row.type}</td>
-                                        <td className='expand'>{row.example}</td>
-                                        <td className='expand'>{row.yes}</td>
-                                        <td className='expand'>{row.no}</td>
+
+                                        <td>
+                                            <span className={`${row.status === 'notLearnt' ? 'label label-live' : 'label label-draft'}`}>
+                                                {row.status === 'notLearnt' ? '没学过' : '学到了'}
+                                            </span>
+                                        </td>
+
+
+                                        {/* <td>{row.type}</td> */}
+                                        <td className='expand1'>{row.example}</td>
+                                        {userValified && <td>{row.yes}</td>}
+                                        {userValified && <td>{row.no}</td>}
 
                                         {hasHttpOrHttps(row.note)
                                             ? <td><a href={row.note}>Link</a></td>
                                             : <td>{row.note}</td>
                                         }
-
-                                        <td>
-                                            <span className={`${row.status === 'notLearnt' ? 'label label-live' : 'label label-draft'}`}>
-                                                {row.status === 'notLearnt' ? '未修得' : '習得済み'}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className='actions'>
-                                                {userValified && <BsFillTrashFill className='delete-btn' onClick={() => onDelete(row.docId)} />}
-                                                {userValified && <BsPencilFill onClick={() => onEditStart(row)} />}
-
-                                                {!userValified && <div>disabled</div>}
-                                            </span>
-                                        </td>
                                     </tr>)
                             })
                         }

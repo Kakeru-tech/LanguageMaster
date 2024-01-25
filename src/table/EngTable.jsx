@@ -14,15 +14,19 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
         <table className='table'>
           <thead>
             <tr>
+              {userValified && <th>Action</th>}
               <th>English</th>
-              <th>Meaning</th>
-              <th>type</th>
-              <th className='expand'>Example</th>
-              <th>Y</th>
-              <th>N</th>
-              <th>Note</th>
+              <th>Meaning</th> 
               <th>Status</th>
-              <th>Action</th>
+
+
+              <th>type</th>
+              <th className='expand1'>Example</th>
+              {userValified && <th>Y</th>}
+              {userValified && <th>N</th>}
+              <th>Note</th>
+             
+
             </tr>
           </thead>
           <tbody>
@@ -30,33 +34,36 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
               engNote.map((row, key) => {
                 return (
                   <tr key={key} className={row.status === 'notLearnt' ? '' : 'learntRow'}>
-                    <td><h4>{row.english}</h4></td>
-                    <td>{row.meaning}</td>
-                    <td>{row.type}</td>
-                    <td className='expand'>{row.example}</td>
-                    <td >{row.yes}</td>
-                    <td >{row.no}</td>
 
-                    {hasHttpOrHttps(row.note)
-                      ? <td><a href={row.note}>Link</a></td>
-                      : <td>{row.note}</td>
-                    }
+                    {userValified &&
+                      <td>
+                        <span className='actions'>
+                          <BsFillTrashFill className='delete-btn' onClick={() => onDelete(row.docId)} />
+                          <BsPencilFill onClick={() => onEditStart(row)} />
+                        </span>
+                      </td>}
+
+                    <td><h3>{row.english}</h3></td>
+                    <td><h4>{row.meaning}</h4></td>
 
                     <td>
                       <span className={`${row.status === 'notLearnt' ? 'label label-live' : 'label label-draft'}`}>
                         {row.status === 'notLearnt' ? '未修得' : '習得済み'}
                       </span>
                     </td>
-                    <td>
-                      <span className='actions'>
-                        {userValified && <BsFillTrashFill className='delete-btn' onClick={() => onDelete(row.docId)} />}
-                        {userValified && <BsPencilFill onClick={() => onEditStart(row)} />}
 
-                        {!userValified && <div>disabled</div>}
+                    <td>{row.type}</td>
+                    <td className='expand1'>{row.example}</td>
 
+                    {userValified && <td>{row.yes}</td>}
+                    {userValified && <td>{row.no}</td>}
 
-                      </span>
-                    </td>
+                    {hasHttpOrHttps(row.note)
+                      ? <td><a href={row.note}>Link</a></td>
+                      : <td>{row.note}</td>
+                    }
+
+                  
                   </tr>)
               })
             }
