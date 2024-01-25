@@ -48,7 +48,7 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
                 break;
             case 'ArrowLeft':
                 if (!hitLimit) {
-                nextCardFlipFalse();
+                    nextCardFlipFalse();
                     if (userValified) {
                         await yesNoUpdate(arr[count], false, 'Chinese');
                     }
@@ -99,6 +99,39 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
         setHitLimit(false);
     }
 
+    const manualClick = async (move) => {
+
+        if (move === 'no') {
+            if (!hitLimit) {
+                nextCardFlipFalse();
+                if (userValified) {
+                    await yesNoUpdate(arr[count], false, 'Chinese');
+                }
+                if (arr.length > count + 1) {
+                    handleIncrement();
+                } else {
+                    handlelimit();
+                }
+            }
+        }
+        if (move === 'yes') {
+            if (!hitLimit) {
+                nextCardFlipFalse();
+                if (userValified) {
+                    await yesNoUpdate(arr[count], true, 'Chinese');//
+                }
+                if (arr.length > count + 1) {
+                    handleIncrement();
+                } else {
+                    handlelimit();
+                }
+            }
+        }
+        if (move === 'flip') {
+            handleToggleFlip();
+        }
+    }
+
 
 
 
@@ -115,13 +148,15 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
 
 
             <div className={(count % 2 == 0) ? 'flashcard' : 'flashcardGray'}>
-                <div className='no_area'><div className='yesNo_Text'>NO</div></div>
+                <div className='no_area' onClick={() => manualClick('no')}>
+                    <div className='yesNo_Text'>NO</div>
+                </div>
 
                 {hitLimit
                     ? <div className='flashcard-content'>
                         End<button onClick={restart}>Restart</button>
                     </div>
-                    : <div className='flashcard-content'>
+                    : <div className='flashcard-content' onClick={() => manualClick('flip')}>
                         <div>
                             {/* when not flipped */}
                             {flashcardContent && !flipped && flashcardContent.chinese}
@@ -134,7 +169,9 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
                             <div className='countStr'>わかった回数({flashcardContent && flashcardContent.yes})</div>
                         </div>
                     </div>}
-                <div className='yes_area'><div className='yesNo_Text'>Yes</div></div>
+                <div className='yes_area' onClick={() => manualClick('yes')}>
+                    <div className='yesNo_Text'>Yes</div>
+                </div>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified, openSidebarToggle })
     const [hitLimit, setHitLimit] = useState(false);
     const [arr, setArr] = useState([]);
 
-    
+
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress);
         //remove event listener when component is mounted.
@@ -101,6 +101,39 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified, openSidebarToggle })
         setHitLimit(false);
     }
 
+    const manualClick = async (move) => {
+
+        if (move === 'no') {
+            if (!hitLimit) {
+                nextCardFlipFalse();
+                if (userValified) {
+                    await yesNoUpdate(arr[count], false, 'English');
+                }
+                if (arr.length > count + 1) {
+                    handleIncrement();
+                } else {
+                    handlelimit();
+                }
+            }
+        }
+        if (move === 'yes') {
+            if (!hitLimit) {
+                nextCardFlipFalse();
+                if (userValified) {
+                    await yesNoUpdate(arr[count], true, 'English');//
+                }
+                if (arr.length > count + 1) {
+                    handleIncrement();
+                } else {
+                    handlelimit();
+                }
+            }
+        }
+        if (move === 'flip') {
+            handleToggleFlip();
+        }
+    }
+
 
 
     return (
@@ -115,14 +148,16 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified, openSidebarToggle })
 
 
             {/* <div className='flashcard'> */}
-                <div className={(count % 2 == 0) ? 'flashcard' : 'flashcardGray'}>
+            <div className={(count % 2 == 0) ? 'flashcard' : 'flashcardGray'}>
 
-                <div className='no_area'><div className='yesNo_Text'>NO</div></div>
+                <div className='no_area' onClick={() => manualClick('no')}>
+                    <div className='yesNo_Text'>NO</div>
+                </div>
                 {hitLimit
                     ? <div className='flashcard-content'>
                         End<button onClick={restart}>Restart</button>
                     </div>
-                    : <div className='flashcard-content'>
+                    : <div className='flashcard-content' onClick={() => manualClick('flip')}>
                         <div>
                             {flashcardContent && !flipped && flashcardContent.english}
                             {flashcardContent && flipped && flashcardContent.meaning}
@@ -133,7 +168,9 @@ const EngFlashcard = ({ engNote, yesNoUpdate, userValified, openSidebarToggle })
                         </div>
                     </div>}
 
-                <div className='yes_area'><div className='yesNo_Text'>Yes</div></div>
+                <div className='yes_area' onClick={() => manualClick('yes')}>
+                    <div className='yesNo_Text' >Yes</div>
+                </div>
             </div>
         </div>
     );
