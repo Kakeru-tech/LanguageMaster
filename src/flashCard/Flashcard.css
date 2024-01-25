@@ -36,9 +36,15 @@
     margin-right: 10px;
 }
 
+@media screen and (max-width: 768px) {
+    .flashcardGray,
+    .flashcard {
+        width: 95%;
+    }
+}
+
 .flashcard-content {
     font-size: xx-large;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
