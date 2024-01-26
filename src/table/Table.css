@@ -76,6 +76,9 @@
 .label-live {
     background-color: #42a942;
 }
+.label-question {
+    background-color: #cb63ac;
+}
 
 .actions {
     display: flex;
@@ -90,6 +93,11 @@
     color: #e10d05;
 }
 
+/* table color */
 .learntRow {
     background-color: #c9c6c6;
+}
+
+.question{
+    background-color: #cbaca0;
 }

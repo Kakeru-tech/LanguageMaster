@@ -8,6 +8,12 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
         return /^(https?:\/\/)/.test(inputString);
     }
 
+    const confirm = (row) => {
+        if (window.confirm(`Are you sure to delete ${row.chinese}?`)) {
+            onDelete(row.docId);
+        }
+    }
+
 
     return (
         <div className='table-container'>
@@ -33,11 +39,18 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
                         {
                             chinaNote.map((row, key) => {
                                 return (
-                                    <tr key={key} className={row.status === 'notLearnt' ? '' : 'learntRow'}>
+                                    <tr
+                                        key={key}
+                                        className={row.status === 'notLearnt'
+                                            ? ''
+                                            : row.status === 'notLearnt'
+                                                ? 'learntRow'
+                                                : 'question'}>
+
                                         {userValified &&
                                             <td>
                                                 <span className='actions'>
-                                                    <BsFillTrashFill className='delete-btn' onClick={() => onDelete(row.docId)} />
+                                                    <BsFillTrashFill className='delete-btn' onClick={() => confirm(row)} />
                                                     <BsPencilFill onClick={() => onEditStart(row)} />
                                                 </span>
                                             </td>}
@@ -47,8 +60,17 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
                                         <td>{row.meaning}</td>
 
                                         <td>
-                                            <span className={`${row.status === 'notLearnt' ? 'label label-live' : 'label label-draft'}`}>
-                                                {row.status === 'notLearnt' ? '没学过' : '学到了'}
+                                            <span className={`${row.status === 'notLearnt'
+                                                ? 'label label-live'
+                                                : row.status === 'Learnt'
+                                                    ? 'label label-draft'
+                                                    : 'label label-question'}`}>
+
+                                                {row.status === 'notLearnt'
+                                                    ? '没学过'
+                                                    : row.status === 'Learnt'
+                                                        ? '学到了'
+                                                        : '问题'}
                                             </span>
                                         </td>
 

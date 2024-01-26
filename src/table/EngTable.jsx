@@ -8,6 +8,12 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
     return /^(https?:\/\/)/.test(inputString);
   }
 
+  const confirm = (row) => {
+    if (window.confirm(`Are you sure to delete ${row.english}?`)) {
+      onDelete(row.docId);
+    }
+  }
+
   return (
     <div className='table-container'>
       <div className='table-wrapper'>
@@ -16,7 +22,7 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
             <tr>
               {userValified && <th>Action</th>}
               <th>English</th>
-              <th>Meaning</th> 
+              <th>Meaning</th>
               <th>Status</th>
 
 
@@ -25,7 +31,7 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
               {userValified && <th>Y</th>}
               {userValified && <th>N</th>}
               <th>Note</th>
-             
+
 
             </tr>
           </thead>
@@ -33,12 +39,18 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
             {
               engNote.map((row, key) => {
                 return (
-                  <tr key={key} className={row.status === 'notLearnt' ? '' : 'learntRow'}>
+                  <tr
+                    key={key}
+                    className={row.status === 'notLearnt'
+                      ? ''
+                      : row.status === 'Learnt'
+                        ? 'learntRow'
+                        : 'question'}>
 
                     {userValified &&
                       <td>
                         <span className='actions'>
-                          <BsFillTrashFill className='delete-btn' onClick={() => onDelete(row.docId)} />
+                          <BsFillTrashFill className='delete-btn' onClick={() => confirm(row)} />
                           <BsPencilFill onClick={() => onEditStart(row)} />
                         </span>
                       </td>}
@@ -47,8 +59,17 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
                     <td><h4>{row.meaning}</h4></td>
 
                     <td>
-                      <span className={`${row.status === 'notLearnt' ? 'label label-live' : 'label label-draft'}`}>
-                        {row.status === 'notLearnt' ? '未修得' : '習得済み'}
+                      <span className={`${row.status === 'notLearnt'
+                        ? 'label label-live' :
+                        row.status === 'Learnt'
+                          ? 'label label-draft'
+                          : 'label label-question'}`}>
+
+                        {row.status === 'notLearnt'
+                          ? '未修得'
+                          : row.status === 'Learnt'
+                            ? '習得済み'
+                            : '?質問?'}
                       </span>
                     </td>
 
@@ -63,7 +84,7 @@ export const EngTable = ({ engNote, onDelete, onEditStart, userValified }) => {
                       : <td>{row.note}</td>
                     }
 
-                  
+
                   </tr>)
               })
             }

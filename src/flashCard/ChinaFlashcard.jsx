@@ -91,6 +91,10 @@ const ChinaFlashcard = ({ chinaNote, yesNoUpdate, userValified }) => {
         setHitLimit((prevhitLimit) => !prevhitLimit);
     }
 
+    const nextCardFlipFalse = () => {
+        setFlipped(false);
+    }
+
     const flashcardContent = arr[count];
 
     const restart = () => {

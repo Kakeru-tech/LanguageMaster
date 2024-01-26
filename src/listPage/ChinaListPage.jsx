@@ -105,6 +105,9 @@ const ChinaListPage = ({ chinaNote, userValified }) => {
             case 'NotAcquired':
                 arr = chinaNote.filter(item => item.status === 'notLearnt');
                 break;
+            case 'question':
+                arr = chinaNote.filter(item => item.status === 'question');
+                break;
             case 'search':
                 arr = chinaNote.filter(obj => obj.chinese.includes(search));
                 break;
@@ -134,6 +137,7 @@ const ChinaListPage = ({ chinaNote, userValified }) => {
                         <option value='Alphabetically'>Alphabetically</option>
                         <option value='Acquired'>Acquired</option>
                         <option value='NotAcquired'>Not acquired</option>
+                        <option value='question'>Question</option>
                     </select>
                 </div>
 

@@ -100,6 +100,9 @@ const EngListPage = ({ engNote, userValified }) => {
             case 'NotAcquired':
                 arr = engNote.filter(item => item.status === 'notLearnt');
                 break;
+            case 'question':
+                arr = engNote.filter(item => item.status === 'question');
+                break;
             case 'search':
                 arr = engNote.filter(obj => obj.english.toLowerCase().includes(search));
                 break;
@@ -130,6 +133,7 @@ const EngListPage = ({ engNote, userValified }) => {
                         <option value='Alphabetically'>Alphabetically</option>
                         <option value='Acquired'>Acquired</option>
                         <option value='NotAcquired'>Not acquired</option>
+                        <option value='question'>Question</option>
                     </select>
                 </div>
 
@@ -151,7 +155,7 @@ const EngListPage = ({ engNote, userValified }) => {
                 onDelete={onDelete}
                 onEditStart={onEditStart}
                 userValified={userValified}
-                />
+            />
 
 
             {modalOpen &&

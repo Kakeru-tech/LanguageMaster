@@ -10,8 +10,12 @@ export const EngModal = ({ setModalOpen, onAddNew, editOn, onEdit }) => {
     const [note, setNote] = useState(editOn ? editOn.note : '');
     const [status, setStatus] = useState(editOn ? editOn.status : '');
 
+    const [buttonClicked, setButtonClicked] = useState(false);
+
 
     const onAdd = async () => {
+
+        setButtonClicked(true);
 
         if (english) {
             const newData = [english, meaning, type, example, note, status];
@@ -76,15 +80,18 @@ export const EngModal = ({ setModalOpen, onAddNew, editOn, onEdit }) => {
                         <option value=''>Please shoose an option</option>
                         <option value='notLearnt'>未修得</option>
                         <option value='Learnt'>習得済み</option>
+                        <option value='question'>質問</option>
                     </select>
                 </div>
 
+                {!buttonClicked &&
+                    <button
+                        className='submit_btn'
+                        onClick={editOn ? onUpdate : onAdd}
+                    >
+                        {editOn ? 'Update' : 'Add a new'}
+                    </button>}
 
-                <button
-                    className='submit_btn'
-                    onClick={editOn ? onUpdate : onAdd}
-                >
-                    {editOn ? 'Update' : 'Add a new'} </button>
             </div>
         </div>
     )
