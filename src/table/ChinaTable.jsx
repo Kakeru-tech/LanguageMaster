@@ -43,7 +43,7 @@ export const ChinaTable = ({ chinaNote, onDelete, onEditStart, userValified }) =
                                         key={key}
                                         className={row.status === 'notLearnt'
                                             ? ''
-                                            : row.status === 'notLearnt'
+                                            : row.status === 'Learnt'
                                                 ? 'learntRow'
                                                 : 'question'}>
 
